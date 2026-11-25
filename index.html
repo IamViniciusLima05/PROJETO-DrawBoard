@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>DrawBoard | Lousa digital</title>
+  <meta name="description" content="Lousa digital com desenho livre, borracha, formas, cores, espessura e exportação em PNG.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <canvas id="lousa" aria-label="Área de desenho"></canvas>
+
+  <header class="topo">
+    <p class="marca">Draw<b>Board</b></p>
+    <div class="topo__acoes">
+      <button class="ico" id="desfazer" title="Desfazer (Ctrl+Z)" aria-label="Desfazer" disabled><svg viewBox="0 0 24 24"><path d="M9 14 4 9l5-5"/><path d="M4 9h11a5 5 0 0 1 0 10h-3"/></svg></button>
+      <button class="ico" id="refazer" title="Refazer (Ctrl+Y)" aria-label="Refazer" disabled><svg viewBox="0 0 24 24"><path d="m15 14 5-5-5-5"/><path d="M20 9H9a5 5 0 0 0 0 10h3"/></svg></button>
+      <button class="ico" id="fundo" title="Trocar fundo" aria-label="Trocar fundo da lousa"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M3 15h18M9 3v18M15 3v18"/></svg></button>
+      <button class="ico perigo" id="limpar" title="Limpar tudo" aria-label="Limpar tudo"><svg viewBox="0 0 24 24"><path d="M4 7h16M10 11v6M14 11v6M6 7l1 13h10l1-13M9 7V4h6v3"/></svg></button>
+      <button class="salvar" id="salvar"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3v12M7 10l5 5 5-5M5 21h14"/></svg> Salvar PNG</button>
+    </div>
+  </header>
+
+  <nav class="ferramentas" aria-label="Ferramentas">
+    <div class="grupo" role="group" aria-label="Ferramenta">
+      <button data-ferr="lapis" aria-pressed="true" title="Lápis (P)" aria-label="Lápis"><svg viewBox="0 0 24 24"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/><path d="m13.5 6.5 4 4"/></svg></button>
+      <button data-ferr="marca" aria-pressed="false" title="Marca-texto (M)" aria-label="Marca-texto"><svg viewBox="0 0 24 24"><path d="m9 11-5 5v4h4l5-5"/><path d="m14 4 6 6-7 7-6-6 7-7Z"/></svg></button>
+      <button data-ferr="borracha" aria-pressed="false" title="Borracha (E)" aria-label="Borracha"><svg viewBox="0 0 24 24"><path d="m7 21-4-4L14 6l6 6-9 9H7Z"/><path d="M22 21H7M9 11l6 6"/></svg></button>
+      <button data-ferr="linha" aria-pressed="false" title="Linha (L)" aria-label="Linha"><svg viewBox="0 0 24 24"><path d="M5 19 19 5"/></svg></button>
+      <button data-ferr="retangulo" aria-pressed="false" title="Retângulo (R)" aria-label="Retângulo"><svg viewBox="0 0 24 24"><rect x="4" y="6" width="16" height="12" rx="1"/></svg></button>
+      <button data-ferr="circulo" aria-pressed="false" title="Círculo (C)" aria-label="Círculo"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/></svg></button>
+      <button data-ferr="texto" aria-pressed="false" title="Texto (T)" aria-label="Texto"><svg viewBox="0 0 24 24"><path d="M5 6V4h14v2M12 4v16M9 20h6"/></svg></button>
+    </div>
+    <span class="div" aria-hidden="true"></span>
+    <div class="grupo cores" id="cores" role="group" aria-label="Cor"></div>
+    <label class="cor-livre" title="Outra cor"><input type="color" id="cor-livre" value="#111111" aria-label="Escolher outra cor"><span></span></label>
+    <span class="div" aria-hidden="true"></span>
+    <label class="espessura" title="Espessura">
+      <span class="sr">Espessura</span>
+      <i class="previa-esp" id="previa-esp"></i>
+      <input type="range" id="espessura" min="1" max="60" value="5">
+      <output id="esp-valor">5</output>
+    </label>
+    <label class="preencher" title="Preencher formas"><input type="checkbox" id="preencher"> Preencher</label>
+  </nav>
+
+  <input class="caixa-texto" id="caixa-texto" hidden aria-label="Digite o texto e aperte Enter">
+  <div class="toast" id="toast" role="status" hidden></div>
+  <script src="js/script.js"></script>
+</body>
+</html>
